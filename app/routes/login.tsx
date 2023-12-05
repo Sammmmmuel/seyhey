@@ -7,6 +7,8 @@ export default function Login() {
     const [formData, setFormData] = useState({
     email: '',
     password: '',
+    firstName: '',
+    lastName: '',
   })
 
   // Updates the form data when an input changes
@@ -32,6 +34,23 @@ export default function Login() {
 
 
         <form method="POST" className="rounded-2xl bg-gray-200 p-6 w-96">
+
+        {action === 'register' && (
+            <>
+              <FormField
+                htmlFor="firstName"
+                label="First Name"
+                onChange={e => handleInputChange(e, 'firstName')}
+                value={formData.firstName}
+              />
+              <FormField
+                htmlFor="lastName"
+                label="Last Name"
+                onChange={e => handleInputChange(e, 'lastName')}
+                value={formData.lastName}
+              />
+            </>
+          )}
           <FormField
             htmlFor="email"
             label="Email"
@@ -46,11 +65,11 @@ export default function Login() {
             onChange={e => handleInputChange(e, 'password')}
           />
           <div className="w-full text-center">
-            <input
-              type="submit"
-              className="rounded-xl mt-2 bg-black-300 px-3 py-2 text-black-600 font-semibold transition duration-300 ease-in-out hover:bg-cyan-400 hover:-translate-y-1"
-              value="Sign In"
-            />
+          <button type="submit" name="_action" value={action} className="rounded-xl mt-2 bg-gray px-3 py-2 text-black font-semibold transition duration-300 ease-in-out hover:bg-cyan-400 hover:-translate-y-1">
+    {
+        action === 'login' ? "Sign In" : "Sign Up"
+    }
+ </button>
           </div>
         </form>
       </div>
